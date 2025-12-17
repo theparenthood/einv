@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
 /* RESET + BACKGROUND */
 :root, html, body {
@@ -37,24 +36,12 @@ h1 {
     margin-bottom: 5px;
 }
 .subtitle {
-    font-size: clamp(14px, 4vw, 17px);
-    color: #666;
-    margin-bottom: 18px;
+    font-size: clamp(14px, 4vw, 18px);
+    color: #777;
+    margin-bottom: 20px;
 }
 
-/* INFO BOX */
-.info-box {
-    background: #fff7e6;
-    border-left: 5px solid #faa220;
-    padding: 14px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    text-align: left;
-    font-size: 14px;
-    color: #444;
-}
-
-/* GRID */
+/* GRID LAYOUT */
 .grid {
     display: flex;
     flex-wrap: wrap;
@@ -62,7 +49,7 @@ h1 {
     gap: 14px;
 }
 
-/* MENU BUTTON */
+/* BUTTON STYLE */
 .btn {
     flex: 1 1 calc(45% - 10px);
     background: #faa220;
@@ -82,108 +69,104 @@ h1 {
     transform: translateY(-3px);
 }
 
-/* MOBILE BUTTON SIZE FIX */
+/* --- MOBILE FIX --- */
 @media (max-width: 500px) {
     .btn {
-        flex: 1 1 85% !important;
-        max-width: 85% !important;
+        flex: 1 1 80% !important;
+        max-width: 80% !important;
     }
 }
 
-/* MODAL BACKDROP */
+/* --- MODAL OVERLAY --- */
 .modal-bg {
-    display: none;
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
     background: rgba(0,0,0,0.45);
     backdrop-filter: blur(3px);
+    display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    z-index: 9999;
 }
 
-/* MODAL BOX */
+/* --- MODAL BOX --- */
 .modal-box {
     background: white;
-    padding: 22px 18px;
-    width: 90%;
-    max-width: 320px;
+    padding: 25px 22px;
+    max-width: 360px;
+    width: 100%;
     border-radius: 12px;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 8px 28px rgba(0,0,0,0.25);
 }
 
 /* MODAL BUTTON */
 .modal-btn {
-    margin-top: 16px;
-    padding: 10px 18px;
+    margin-top: 18px;
+    padding: 10px 20px;
     background: #faa220;
     border: none;
     border-radius: 6px;
     color: white;
+    font-weight: bold;
+    width: 100%;
     cursor: pointer;
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<!-- MODAL POPUP (SHOWS ON PAGE LOAD) -->
+<div id="landingModal" class="modal-bg">
+    <div class="modal-box">
+        <h2 style="margin-top:0;">Before You Proceed</h2>
+        <p>To request an e‑Invoice, please ensure you have the following details ready:</p>
 
-    <!-- LOGO -->
+        <ul style="margin-left: 18px;">
+            <li>Customer Type (Individual or Company)</li>
+            <li>IC / Passport / ROC Number</li>
+            <li>Tax Identification Number (TIN)</li>
+            <li>Contact Number & Email</li>
+            <li>Full Address</li>
+            <li>Receipt Number & Date</li>
+            <li>A clear photo/scan of your receipt</li>
+        </ul>
+
+        <button class="modal-btn" onclick="closeLanding()">Proceed</button>
+    </div>
+</div>
+
+<div class="container">
     <div class="logo">
         <img src="https://i.postimg.cc/LnDgZ2ny/logo.png">
     </div>
 
-    <!-- HEADER -->
-    <h1>E‑Invoice Request</h1>
-    <p class="subtitle">Please read the instructions below before selecting your outlet.</p>
-
-    <!-- INFO NOTICE BOX -->
-    <div class="info-box">
-        <strong>Before You Proceed:</strong>
-        <br><br>
-        • Submit within <b>3 days</b> from transaction date. <br>
-        • Ensure details are accurate & match LHDN records. <br>
-        • TIN (Tax Identification Number) is required for Individuals & Businesses. <br>
-        • Prepare a <b>clear photo/scan</b> of your receipt (JPG/PNG/PDF). <br><br>
-        After reading, select your outlet below.
-    </div>
-
-    <!-- OUTLET SELECTION -->
-    <h1>Select Outlet</h1>
+    <h1>Select Outlet to Submit E‑Invoice</h1>
     <p class="subtitle">Choose the outlet to proceed.</p>
 
     <div class="grid">
-        <a href="#" class="btn" onclick="showModal()">Central i‑City</a>
-        <a href="#" class="btn" onclick="showModal()">Sunway Putra Mall</a>
-        <a href="#" class="btn" onclick="showModal()">Melawati Mall</a>
-        <a href="#" class="btn" onclick="showModal()">Sunway Pyramid</a>
-        <a href="#" class="btn" onclick="showModal()">MyTOWN</a>
-        <a href="#" class="btn" onclick="showModal()">Toppen</a>
-        <a href="#" class="btn" onclick="showModal()">Aman Central</a>
-        <a href="#" class="btn" onclick="showModal()">Lotus's SP</a>
-        <a href="#" class="btn" onclick="showModal()">Imago (KK)</a>
-        <a href="#" class="btn" onclick="showModal()">Boulevard (Kuching)</a>
-    </div>
-</div>
-
-<!-- MODAL -->
-<div id="modal" class="modal-bg">
-    <div class="modal-box">
-        <h2>Testing In Progress</h2>
-        <p>The form will be available soon.</p>
-        <button class="modal-btn" onclick="closeModal()">OK</button>
+        <a href="#" class="btn">Central i‑City</a>
+        <a href="#" class="btn">Sunway Putra Mall</a>
+        <a href="#" class="btn">Melawati Mall</a>
+        <a href="#" class="btn">Sunway Pyramid</a>
+        <a href="#" class="btn">MyTOWN</a>
+        <a href="#" class="btn">Toppen</a>
+        <a href="#" class="btn">Aman Central</a>
+        <a href="#" class="btn">Lotus's SP</a>
+        <a href="#" class="btn">Imago (KK)</a>
+        <a href="#" class="btn">Boulevard (Kuching)</a>
     </div>
 </div>
 
 <script>
-function showModal() {
-    document.getElementById('modal').style.display = 'flex';
+/* Auto popup on load */
+window.onload = function() {
+    document.getElementById('landingModal').style.display = 'flex';
 }
-function closeModal() {
-    document.getElementById('modal').style.display = 'none';
+
+function closeLanding() {
+    document.getElementById('landingModal').style.display = 'none';
 }
 </script>
 
