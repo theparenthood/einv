@@ -13,23 +13,19 @@
     background: linear-gradient(to bottom, #ffffff, #fff2d6);
     font-family: "Segoe UI", sans-serif;
 }
-
 /* MAIN CONTAINER */
 .container {
     width: 100%;
     padding: 20px 6%;
     text-align: center;
     box-sizing: border-box;
-    display: none; /* hidden until proceed button */
 }
-
 /* LOGO */
 .logo img {
     width: 75%;
     max-width: 240px;
     height: auto;
 }
-
 /* TITLES */
 h1 {
     font-size: clamp(22px, 6vw, 30px);
@@ -41,15 +37,13 @@ h1 {
     color: #777;
     margin-bottom: 20px;
 }
-
-/* GRID */
+/* GRID LAYOUT */
 .grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px;
 }
-
 /* BUTTON STYLE */
 .btn {
     flex: 1 1 calc(45% - 10px);
@@ -69,37 +63,36 @@ h1 {
     background: #e1921c;
     transform: translateY(-3px);
 }
-
-/* MOBILE FIX */
+/* MOBILE */
 @media (max-width: 500px) {
     .btn {
         flex: 1 1 80% !important;
         max-width: 80% !important;
     }
 }
-
-/* POPUP MODAL */
+/* MODAL OVERLAY SHARED STYLE */
 .modal-bg {
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
     background: rgba(0,0,0,0.45);
     backdrop-filter: blur(3px);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    z-index: 9999;
 }
+/* MODAL BOX */
 .modal-box {
     background: white;
-    padding: 25px 20px;
-    width: 90%;
-    max-width: 330px;
+    padding: 25px 22px;
+    max-width: 360px;
+    width: 100%;
     border-radius: 12px;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 8px 28px rgba(0,0,0,0.25);
 }
+/* MODAL BUTTON */
 .modal-btn {
     margin-top: 18px;
     padding: 10px 20px;
@@ -107,57 +100,75 @@ h1 {
     border: none;
     border-radius: 6px;
     color: white;
+    font-weight: bold;
+    width: 100%;
     cursor: pointer;
-    font-size: 15px;
 }
 </style>
 </head>
-
 <body>
 
-<!-- AUTO POPUP ON PAGE LOAD -->
-<div id="welcomeModal" class="modal-bg">
+<!-- LANDING POPUP -->
+<div id="landingModal" class="modal-bg" style="display:flex;">
     <div class="modal-box">
-        <h2>Before You Proceed</h2>
-        <p>Please ensure you have all details ready:</p>
-        <ul style="text-align:left; font-size:14px; color:#555; margin:10px auto; max-width:260px;">
+        <h2 style="margin-top:0;">Before You Proceed</h2>
+        <p>To request an e‑Invoice, please ensure you have the following details ready:</p>
+        <ul style="margin-left: 18px;">
+            <li>Customer Type (Individual or Company)</li>
             <li>IC / Passport / ROC Number</li>
             <li>Tax Identification Number (TIN)</li>
-            <li>Contact & Email</li>
+            <li>Contact Number & Email</li>
             <li>Full Address</li>
             <li>Receipt Number & Date</li>
-            <li>Physical Receipt </li>
+            <li>A clear photo/scan of your receipt</li>
         </ul>
-        <button class="modal-btn" onclick="closeWelcome()">Proceed</button>
+        <button class="modal-btn" onclick="closeLanding()">Proceed</button>
     </div>
 </div>
 
-<!-- MAIN CONTENT (HIDDEN AT FIRST) -->
-<div class="container" id="mainContent">
+<!-- TESTING POPUP -->
+<div id="testModal" class="modal-bg">
+    <div class="modal-box" style="text-align:center;">
+        <h2>Testing In Progress</h2>
+        <p>Please check again later.</p>
+        <button class="modal-btn" onclick="closeTest()">OK</button>
+    </div>
+</div>
+
+<div class="container">
     <div class="logo">
         <img src="https://i.postimg.cc/LnDgZ2ny/logo.png">
     </div>
+
     <h1>Select Outlet to Submit E‑Invoice</h1>
     <p class="subtitle">Choose the outlet to proceed.</p>
 
     <div class="grid">
-        <a href="#" class="btn">Central i‑City</a>
-        <a href="#" class="btn">Sunway Putra Mall</a>
-        <a href="#" class="btn">Melawati Mall</a>
-        <a href="#" class="btn">Sunway Pyramid</a>
-        <a href="#" class="btn">MyTOWN</a>
-        <a href="#" class="btn">Toppen</a>
-        <a href="#" class="btn">Aman Central</a>
-        <a href="#" class="btn">Lotus's SP</a>
-        <a href="#" class="btn">Imago (KK)</a>
-        <a href="#" class="btn">Boulevard (Kuching)</a>
+        <a onclick="showTest()" class="btn">Central i‑City</a>
+        <a onclick="showTest()" class="btn">Sunway Putra Mall</a>
+        <a onclick="showTest()" class="btn">Melawati Mall</a>
+        <a onclick="showTest()" class="btn">Sunway Pyramid</a>
+        <a onclick="showTest()" class="btn">MyTOWN</a>
+        <a onclick="showTest()" class="btn">Toppen</a>
+        <a onclick="showTest()" class="btn">Aman Central</a>
+        <a onclick="showTest()" class="btn">Lotus's SP</a>
+        <a onclick="showTest()" class="btn">Imago (KK)</a>
+        <a onclick="showTest()" class="btn">Boulevard (Kuching)</a>
     </div>
 </div>
 
 <script>
-function closeWelcome() {
-    document.getElementById("welcomeModal").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
+/* Landing popup */
+function closeLanding() {
+    document.getElementById('landingModal').style.display = 'none';
+}
+
+/* Testing popup */
+function showTest() {
+    document.getElementById('testModal').style.display = 'flex';
+}
+function closeTest() {
+    document.getElementById('testModal').style.display = 'none';
 }
 </script>
 
