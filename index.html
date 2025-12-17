@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
 
+<style>
 /* RESET + BACKGROUND */
 :root, html, body {
     margin: 0;
@@ -37,12 +37,24 @@ h1 {
     margin-bottom: 5px;
 }
 .subtitle {
-    font-size: clamp(14px, 4vw, 18px);
-    color: #777;
-    margin-bottom: 20px;
+    font-size: clamp(14px, 4vw, 17px);
+    color: #666;
+    margin-bottom: 18px;
 }
 
-/* GRID LAYOUT */
+/* INFO BOX */
+.info-box {
+    background: #fff7e6;
+    border-left: 5px solid #faa220;
+    padding: 14px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 14px;
+    color: #444;
+}
+
+/* GRID */
 .grid {
     display: flex;
     flex-wrap: wrap;
@@ -50,9 +62,9 @@ h1 {
     gap: 14px;
 }
 
-/* BUTTON STYLE */
+/* MENU BUTTON */
 .btn {
-    flex: 1 1 calc(45% - 10px);  /* 2 per row */
+    flex: 1 1 calc(45% - 10px);
     background: #faa220;
     padding: 14px 10px;
     color: white;
@@ -65,21 +77,20 @@ h1 {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     max-width: 240px;
 }
-
 .btn:hover {
     background: #e1921c;
     transform: translateY(-3px);
 }
 
-/* --- MOBILE FIX --- */
+/* MOBILE BUTTON SIZE FIX */
 @media (max-width: 500px) {
     .btn {
-        flex: 1 1 80% !important;  /* Not too wide, not full width */
-        max-width: 80% !important;
+        flex: 1 1 85% !important;
+        max-width: 85% !important;
     }
 }
 
-/* --- MODAL BACKGROUND --- */
+/* MODAL BACKDROP */
 .modal-bg {
     display: none;
     position: fixed;
@@ -92,40 +103,56 @@ h1 {
     align-items: center;
 }
 
-/* --- MODAL BOX --- */
+/* MODAL BOX */
 .modal-box {
     background: white;
-    padding: 25px 20px;
+    padding: 22px 18px;
     width: 90%;
     max-width: 320px;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 8px 28px rgba(0,0,0,0.25);
-    transform: translateY(-10px);
 }
 
 /* MODAL BUTTON */
 .modal-btn {
-    margin-top: 18px;
-    padding: 10px 20px;
+    margin-top: 16px;
+    padding: 10px 18px;
     background: #faa220;
     border: none;
     border-radius: 6px;
     color: white;
     cursor: pointer;
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
+    <!-- LOGO -->
     <div class="logo">
         <img src="https://i.postimg.cc/LnDgZ2ny/logo.png">
     </div>
 
-    <h1>Select Outlet to Submit E‑Invoice</h1>
+    <!-- HEADER -->
+    <h1>E‑Invoice Request</h1>
+    <p class="subtitle">Please read the instructions below before selecting your outlet.</p>
+
+    <!-- INFO NOTICE BOX -->
+    <div class="info-box">
+        <strong>Before You Proceed:</strong>
+        <br><br>
+        • Submit within <b>3 days</b> from transaction date. <br>
+        • Ensure details are accurate & match LHDN records. <br>
+        • TIN (Tax Identification Number) is required for Individuals & Businesses. <br>
+        • Prepare a <b>clear photo/scan</b> of your receipt (JPG/PNG/PDF). <br><br>
+        After reading, select your outlet below.
+    </div>
+
+    <!-- OUTLET SELECTION -->
+    <h1>Select Outlet</h1>
     <p class="subtitle">Choose the outlet to proceed.</p>
 
     <div class="grid">
@@ -142,11 +169,11 @@ h1 {
     </div>
 </div>
 
-<!-- MODAL POPUP -->
+<!-- MODAL -->
 <div id="modal" class="modal-bg">
     <div class="modal-box">
         <h2>Testing In Progress</h2>
-        <p>Please check again later.</p>
+        <p>The form will be available soon.</p>
         <button class="modal-btn" onclick="closeModal()">OK</button>
     </div>
 </div>
